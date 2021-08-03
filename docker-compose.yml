@@ -1,29 +1,27 @@
 version: '3.3'
 
 services:
-  portainer:
-    image: portainer/portainer-ce
-    command: -H unix:///var/run/docker.sock
+  remotely-prod:
+    image: translucency/remotely:latest
+    #command: -H unix:///var/run/docker.sock
     restart: always
     ports:
-      - 9000:9000
-#      - 8000:8000
+      - 5000:5000
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./data:/data
+      - ./data/remotely-data:/remotely-data
     # ATENÇÂO - NÂO ESQUEÇA ALTERAR O NOME DO SERVIÇO NAS ROTAS SENÃO QUEBRA AS OUTRAS APLICAÇÕES 
     # (ex: troque traefik.http.routers.PORTAINER..... por um nome representativo e único da sua aplicação  ) 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.rule=Host(`portainer-template.sertao.ifrs.edu.br`)"
-      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-      - "traefik.http.routers.portainer.entrypoints=websecure"
-      - "traefik.http.routers.portainer.tls"
+      - "traefik.http.routers.remotely-prod.rule=Host(`remoto.sertao.ifrs.edu.br`)"
+      - "traefik.http.services.remotely-prod.loadbalancer.server.port=5000"
+      - "traefik.http.routers.remotely-prod.entrypoints=websecure"
+      - "traefik.http.routers.remotely-prod.tls"
     networks:
       - traefik-net
 
-volumes:
-    data:
+#volumes:
+#    data:
 
 networks:
   traefik-net:
