@@ -13,7 +13,7 @@ services:
     # (ex: troque traefik.http.routers.PORTAINER..... por um nome representativo e único da sua aplicação  ) 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.remotely-prod.rule=Host(`remoto.sertao.ifrs.edu.br`)"
+      - "traefik.http.routers.remotely-prod.rule=Host(`remoto.<YOUR_DOMAIN>`)"
       - "traefik.http.services.remotely-prod.loadbalancer.server.port=5000"
       - "traefik.http.routers.remotely-prod.entrypoints=websecure"
       - "traefik.http.routers.remotely-prod.tls"
