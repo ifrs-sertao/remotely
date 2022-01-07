@@ -18,9 +18,9 @@ services:
       - "traefik.http.routers.remotely-prod.entrypoints=websecure"
       - "traefik.http.routers.remotely-prod.tls"
     networks:
-      - traefik-net
+      - proxy
 
 networks:
-  traefik-net:
+  proxy:
      external: true
 
