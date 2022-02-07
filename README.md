@@ -22,10 +22,10 @@ services:
     # (ex: troque traefik.http.routers.PORTAINER..... por um nome representativo e único da sua aplicação  ) 
     labels:
       - "traefik.http.routers.remotely-http.rule=Host(`remoto.<SEU_DOMINIO>`)"
-      - "traefik.http.routers.remotely-http.entrypoints=web"
+      - "traefik.http.routers.remotely-http.entrypoints=https"
       - "traefik.http.routers.remotely-http.middlewares=redirect"
       - "traefik.http.routers.remotely-https.rule=Host(`remoto.<SEU_DOMINIO>`)"
-      - "traefik.http.routers.remotely-https.entrypoints=web-secure"
+      - "traefik.http.routers.remotely-https.entrypoints=https"
       - "traefik.http.routers.remotely-https.tls=true"
       - "traefik.http.middlewares.redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.remotely-https.tls.certresolver=letsencrypt"
